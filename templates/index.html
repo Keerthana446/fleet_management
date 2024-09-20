@@ -1,107 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fleet Management</title>
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<!-- Font Awesome for Icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-<style>
-body {
-    background-color: white; /* White background for the whole page */
-}
-#chat-box {
-    background: lightcyan;
-    border-radius: 10px;
-    padding: 20px;
-}
-.message-row {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-.message-row.user {
-    justify-content: flex-end;
-}
-.message-row.bot {
-    justify-content: flex-start;
-}
-.message-row img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 10px;
-}
-.message-row.user img {
-    margin-right: 0;
-    margin-left: 10px;
-}
-.message-bubble {
-    padding: 10px;
-    border-radius: 10px;
-}
-.message-bubble.user {
-    background-color: lightgrey;
-    color: black;
-}
-.message-bubble.bot {
-    background-color: lightgray;
-    color: #333;
-}
-/* Styling for input field and suggestions */
-.input-group {
-    position: relative;
-}
-.input-group .form-control {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    border-right: none; /* Merge the input field with the button */
-    padding: 10px;
-}
-.input-group-append button {
-    background-color: white;
-    color: black;
-    border: 1px solid; /* Match the input's border color */
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    padding-left: 12px;
-    padding-right: 12px;
-}
-.input-group-append button i {
-    font-size: 0.8rem;
-    transform: rotate(45deg);
-}
-/* Style for suggestions */
-#suggestions-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    border: 1px solid #ccc;
-    border-top: none;
-    max-height: 200px;
-    overflow-y: auto;
-    position: absolute;
-    width: 100%; /* Make suggestions list match input width */
-    z-index: 10;
-    background-color: white;
-    top: 100%;
-    left: 0;
-}
-#suggestions-list li {
-    padding: 10px;
-    cursor: pointer;
-    border-bottom: 1px solid #ccc;
-}
-#suggestions-list li:hover {
-    background-color: #f0f0f0;
-}
-.hidden {
-    display: none;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fleet Management</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        body {
+            background-color: white; /* White background for the whole page */
+        }
+        #chat-box {
+            background: lightcyan;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .message-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .message-row.user {
+            justify-content: flex-end;
+        }
+        .message-row.bot {
+            justify-content: flex-start;
+        }
+        .message-row img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .message-row.user img {
+            margin-right: 0;
+            margin-left: 10px;
+        }
+        .message-bubble {
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .message-bubble.user {
+            background-color: lightgrey;
+            color: black;
+        }
+        .message-bubble.bot {
+            background-color: lightgray;
+            color: #333;
+        }
+        /* Styling for input field and suggestions */
+        .input-group {
+            position: relative;
+        }
+        .input-group .form-control {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-right: none; /* Merge the input field with the button */
+            padding: 10px;
+        }
+        .input-group-append button {
+            background-color: white;
+            color: black;
+            border: 1px solid; /* Match the input's border color */
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            padding-left: 12px;
+            padding-right: 12px;
+        }
+        .input-group-append button i {
+            font-size: 0.8rem;
+            transform: rotate(45deg);
+        }
+        /* Style for suggestions */
+        #suggestions-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            border: 1px solid #ccc;
+            border-top: none;
+            max-height: 200px;
+            overflow-y: auto;
+            position: absolute;
+            width: 100%; /* Make suggestions list match input width */
+            z-index: 10;
+            background-color: white;
+            top: 100%;
+            left: 0;
+        }
+        #suggestions-list li {
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #ccc;
+        }
+        #suggestions-list li:hover {
+            background-color: #f0f0f0;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -116,7 +116,6 @@ body {
                 <input type="text" id="user-input" class="form-control" placeholder="Ask a question...">
                 <ul id="suggestions-list" class="hidden"></ul> <!-- Autocomplete suggestions -->
                 <div class="input-group-append">
-                    <!-- Modified button to include a Font Awesome send icon -->
                     <button class="btn" id="send-btn" type="button">
                         <i class="fas fa-paper-plane"></i> <!-- Send icon here -->
                     </button>
@@ -155,12 +154,15 @@ $(document).ready(function () {
             $('#suggestions-list').addClass('hidden'); // Hide suggestions when input is cleared
         }
     });
+
     // Handle click on a suggestion
     $(document).on('click', '#suggestions-list li', function () {
         var selectedText = $(this).text();
         $('#user-input').val(selectedText); // Set input field value
         $('#suggestions-list').addClass('hidden'); // Hide suggestions
+        $('#user-input').focus(); // Focus back on input field
     });
+
     // Function to send the message
     function sendMessage() {
         var userMessage = $('#user-input').val().trim();
@@ -179,16 +181,20 @@ $(document).ready(function () {
             $('#user-input').val(''); // Clear input field
         }
     }
+
     // Send message on clicking the send icon button
     $('#send-btn').on('click', function () {
         sendMessage();
     });
+
     // Send message on pressing Enter key
     $('#user-input').on('keypress', function (e) {
         if (e.which == 13) { // Enter key pressed
             sendMessage();
         }
     });
+
+    // Append message to chat box
     function appendMessage(message, sender) {
         var chatBox = $('#chat-box');
         var messageClass = sender === 'user' ? 'user' : 'bot';
