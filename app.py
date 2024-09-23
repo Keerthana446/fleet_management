@@ -8,14 +8,14 @@ data = {
     'region': ['lon04', 'wdc04', 'wdc06']
 }
 mock_data = {
-    "Which thanosbuild column has lowest thanosRank?": "Hi there! How can I help you?",
-    "Which thanosbuild column has highest thanosRank": "Goodbye! Have a nice day.",
-    "What is the maximum thanosbuild?": "I'm your friendly chat bot.",
-    "Which is the minimum thanosbuild?": "aravind!",
-    "What is the minimum thanosbuild?": "result known",
-    "List all thanosbuild in production?": "answer found",
-    "What is the thanosregistry column where region is lon05?": "hanuma",
-    "What is the thanosregistry column where region is lon08?": "hello world"
+    "What is the oldest thanosbuild in production?": "Hi there! How can I help you?",
+    "What is the latest thanosbuild in production?": "Goodbye! Have a nice day.",
+    "List all thanosbuild in production?": "I'm your friendly chat bot.",
+    "What is the thanospodman value for wdc06 region": "aravind!",
+    "What is the thanospodman value for wdc07 region?": "result known",
+    "What thanosregistry column is in wdc07 region?": "answer found",
+    "What thanosregistry value is in lon05 region?": "hanuma",
+    "Which Location column is in region of par05?": "yes"
 }
 @app.route('/')
 def index():
